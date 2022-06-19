@@ -1,7 +1,7 @@
 venv
 .idea
-apps/__pycache__/
-apps/cart/__pycache__/
-apps/shop/__pycache__/
-apps/user/__pycache__/
+games_shop/apps/__pycache__/
+games_shop/apps/cart/__pycache__/
+games_shop/apps/shop/__pycache__/
+games_shop/apps/user/__pycache__/
 
