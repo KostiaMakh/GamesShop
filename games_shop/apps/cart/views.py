@@ -70,6 +70,8 @@ def order_create(request):
                 game.save()
 
             cart.clear()
+
+            messages.add_message(request, messages.SUCCESS, f'Congratulations! \n Your order successfully created. \n Our manager contact with you contact you as soon as possible for confirming order ')
             return render(request, 'cart/order_created.html',
                           {'order': order})
     else:

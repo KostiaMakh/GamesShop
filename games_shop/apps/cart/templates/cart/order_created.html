@@ -10,6 +10,22 @@
         <div class="d-flex justify-content-center">
             <h1>Order created</h1>
         </div>
+
+        {% if messages %}
+
+            {% for message in messages %}
+                {% if message.tags == "error" %}
+                    <div class="alert alert-danger" role="alert">
+                        {{ message }}
+                    </div>
+                {% else %}
+                    <div class="alert alert-{{ message.tags }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
     </div>
 
 {% endblock %}
