@@ -1,0 +1,44 @@
+{% load header_menu %}
+
+<header>
+    <nav class="navbar navbar-expand-lg bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" href="{% url 'home' %}">Navbar</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+
+                {% show_menu %}
+
+                <div class="header-auth">
+                    {% if request.user.is_authenticated %}
+                        <span class="nic-name">{{ request.user.email }}</span>
+                        <span><a class="text-white" href="{% url 'logout' %}">Logout</a></span>
+                    {% else %}
+                        <span><a class="text-white" href="{% url 'login' %}">Login</a></span>
+                        <span><a class="text-white" href="{% url 'register' %}">Register</a></span>
+                    {% endif %}
+                </div>
+
+                {% if wishlist_gb.wishlist|length > 1 %}
+                <a class="cart_fav wl-header-active" href="{% url 'wishlist_detail' %}">
+                    <i class="fa-solid fa-heart"></i>
+                </a>
+                    {% else %}
+                    <a class="cart_fav" href="{% url 'wishlist_detail' %}">
+                    <i class="fa-solid fa-heart"></i>
+                </a>
+                {% endif %}
+                <a class="cart_fav" href="{% url 'cart_detail' %}">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    {% if cart_gb %}
+                        <span>{{ cart_gb.get_total_quantity }}</span>
+                    {% endif %}
+                </a>
+
+            </div>
+        </div>
+    </nav>
+</header>

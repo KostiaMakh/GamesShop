@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}Hello{% endblock %}
+
+{% block main_content %}
+
+    <div class="row">
+        <div class="d-flex justify-content-center">
+            <h1>Games Shop</h1>
+        </div>
+        <div class='main-games row'>
+
+            <h2>New arrivals</h2>
+
+            {% for game in games %}
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="game-img">
+                            <a href='{{ game.get_absolute_url }}'>
+                                <img src="{{ game.poster.url }}" class="card-img-top" alt="poster-{{ game.title }}">
+                            </a>
+                        </div>
+
+                        <div class="card-body d-flex align-items-stretch">
+                            <h4>{{ game.title }}</h4>
+                        </div>
+                    </div>
+                </div>
+
+
+            {% endfor %}
+
+
+        </div>
+        <div class='main-comp row'>
+
+            <h2>Authors</h2>
+
+            {% for company in companies %}
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="game-img">
+                            <a href='{{ company.get_absolute_url }}'>
+                                <img src="{{ company.logo.url }}" class="card-img-top"
+                                     alt="poster-{{ company.title }}">
+                            </a>
+                        </div>
+
+                        <div class="card-body d-flex align-items-stretch">
+                            <h4>{{ company.title }}</h4>
+                        </div>
+                    </div>
+                </div>
+
+
+            {% endfor %}
+
+
+        </div>
+        <div class='main-genre row'>
+
+            <h2>Genres</h2>
+
+            {% for genre in genres %}
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="game-img">
+                            <a href='{{ genre.get_absolute_url }}'>
+                                <img src="{{ genre.photo.url }}" class="card-img-top"
+                                     alt="poster-{{ genre.title }}">
+                            </a>
+                        </div>
+
+                        <div class="card-body d-flex align-items-stretch">
+                            <h4>{{ genre.title }}</h4>
+                        </div>
+                    </div>
+                </div>
+
+
+            {% endfor %}
+
+
+        </div>
+    </div>
+
+
+{% endblock %}

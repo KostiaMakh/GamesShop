@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load game_filters %}
+
+{% block title %}
+    Games
+{% endblock %}
+
+{% block main_content %}
+
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-3 side-bar">
+
+                {% show_filters %}
+
+            </div>
+            <div class="col-md-9 position-relative">
+
+                {% if messages %}
+                    {% for msg in messages %}
+                        <div class="message-cart" id="msg-add">
+                            <i class="fa-solid fa-circle-check"></i>
+                            <span>{{ msg }}</span>
+                        </div>
+                    {% endfor %}
+
+                {% endif %}
+
+                <div class="d-flex justify-content-center">
+                    <h1>Games</h1>
+                </div>
+                <div class="row games-list">
+                    {% for game in games %}
+                        <div class="col-xl-4 col-md-6 mb-3">
+                            <div class="card h-100 position-relative">
+                            {% if game.id in wishlist_gb.wishlist %}
+                                <a class="wishlist-toggle wishlist-active" href="{% url "cart:wishlist_remove" game.id %}">
+                                    <i class="fa-solid fa-heart"></i>
+                                </a>
+                            {% else %}
+
+                                <a class="wishlist-toggle" href="{% url "cart:wishlist_add" game.id %}">
+                                    <i class="fa-solid fa-heart"></i>
+                                </a>
+
+                            {% endif %}
+                                <div class="card-header">
+                                    {{ game.genres }}
+                                </div>
+                                <div class="game-img">
+
+                                    <a href='{{ game.get_absolute_url }}'>
+                                        <img src="{{ game.poster.url }}" class="card-img-top"
+                                             alt="poster-{{ game.title }}">
+                                    </a>
+                                </div>
+                                <div class="game-card">
+                                    <h5 class="card-title">{{ game.title }}</h5>
+                                    <div class="game-price row w-100">
+                                        <div class="col-9 d-flex align-items-center flex-wrap">
+
+                                            {% if game.old_price == 0 %}
+                                                <span class="price">{{ game.price }} USD</span>
+                                            {% else %}
+                                                <span class="old_price">{{ game.old_price }} USD</span>
+                                                <span class="new_price">{{ game.price }} USD</span>
+                                            {% endif %}
+
+                                        </div>
+                                        <div class="col-3 button-bl">
+                                            <form action="{% url "cart:cart_add" game.id %}" method="post">
+                                                {% csrf_token %}
+                                                <input class="val" id="amount" type="text" value="1" name="quantity"
+                                                       hidden="hidden"/>
+                                                <button id='add_to_cart_btn' class="btn" type="submit"><i
+                                                        class="fa-solid fa-cart-shopping mr-2"></i></button>
+                                            </form>
+                                            {#                                            <button class="btn"><i class="fa-solid fa-cart-shopping"></i></button>#}
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

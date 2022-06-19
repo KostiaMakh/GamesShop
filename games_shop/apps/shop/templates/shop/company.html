@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    {{ company.title }}
+{% endblock %}
+
+{% block main_content %}
+
+    <div class="container">
+            <div class="row genre-main-block">
+                <div class="col-12 d-flex justify-content-center">
+                    <h1>{{ company.title }}</h1>
+                </div>
+                <div class="col-12 genre-description">
+
+                    {% if company.logo %}
+
+                        <img src="{{ company.logo.url }}" alt="img-{{ company.title }}">
+
+                    {% endif %}
+
+                    {% autoescape off %}
+
+                        {{ company.description }}
+
+                    {% endautoescape %}
+
+                </div>
+                <div class="col-12 games-list">
+                    <div class="row">
+                    
+                         {% for game in games %}
+                        <div class="col-xl-4 col-md-6 mb-3">
+                            <div class="card h-100">
+                                <div class="card-header">
+                                    {{ game.genres }}
+                                </div>
+                                <div class="game-img">
+                                    <a href='{{ game.get_absolute_url }}'>
+                                        <img src="{{ game.poster.url }}" class="card-img-top"
+                                             alt="poster-{{ game.title }}">
+                                    </a>
+                                </div>
+                                <div class="game-card">
+                                    <h5 class="card-title">{{ game.title }}</h5>
+                                    <div class="game-price row w-100">
+                                        <div class="col-9 d-flex align-items-center flex-wrap">
+
+                                            {% if game.old_price == 0 %}
+                                                <span class="price">{{ game.price }} USD</span>
+                                            {% else %}
+                                                <span class="old_price">{{ game.old_price }} USD</span>
+                                                <span class="new_price">{{ game.price }} USD</span>
+                                            {% endif %}
+
+                                        </div>
+                                        <div class="col-3 button-bl">
+                                            <button class="btn"><i class="fa-solid fa-cart-shopping"></i></button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    </div>
+
+                </div>
+
+            </div>
+
+    </div>
+
+{% endblock %}

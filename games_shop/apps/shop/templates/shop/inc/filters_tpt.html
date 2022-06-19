@@ -1,0 +1,103 @@
+<form action="{% url 'filter' %}" method="get">
+    <div class="filters-group">
+
+    {% if actives %}
+        <a href="{% url 'games' %}" class="restore-filters"><i class="fa-solid fa-xmark"></i>Restore filters</a>
+    {% endif %}
+
+        <h4>Genre:</h4>
+        {% for genre in genres %}
+            <div class="buttons_filter">
+                {% if genre.slug in actives.genres %}
+                    <input checked="checked" type="checkbox" id="{{ genre.title }}" name="genres"
+                           value="{{ genre.slug }}">
+                {% else %}
+
+                    <input type="checkbox" id="{{ genre.title }}" name="genres"
+                           value="{{ genre.slug }}">
+                    <label for="{{ genre.title }}">{{ genre.title }}</label>
+
+                {% endif %}
+
+            </div>
+        {% endfor %}
+
+    </div>
+
+    <div class="filters-group">
+        <h4>Release:</h4>
+
+        {% for year in releases %}
+            <div class="buttons_filter">
+                {% if year.release_year__year in actives.years %}
+                    <input checked="checked" type="checkbox" id="{{ year.release_year__year }}" name="years"
+                           value="{{ year.release_year__year }}">
+                {% else %}
+                    <input type="checkbox" id="{{ year.release_year__year }}" name="years"
+                           value="{{ year.release_year__year }}">
+                {% endif %}
+
+                {#                <input type="checkbox" id="{{ year.release_year__year }}" name="years"#}
+                {#                       value="{{ year.release_year__year }}">#}
+                <label for="{{ year.release_year__year }}">{{ year.release_year__year }}</label>
+            </div>
+        {% endfor %}
+
+    </div>
+
+    <div class="filters-group">
+        <h4>Author:</h4>
+
+        {% for author in authors %}
+            <div class="buttons_filter">
+                {% if author.slug in actives.authors %}
+                    <input checked="checked" type="checkbox" id="{{ author.title }}" name="authors"
+                           value="{{ author.slug }}">
+                {% else %}
+                    <input type="checkbox" id="{{ author.title }}" name="authors" value="{{ author.slug }}">
+                {% endif %}
+                <label for="{{ author.title }}">{{ author.title }}</label>
+            </div>
+        {% endfor %}
+
+    </div>
+
+    <div class="filters-group">
+        <h4>Device:</h4>
+
+        {% for device in devices %}
+            <div class="buttons_filter">
+                {% if device.slug in actives.devices %}
+                    <input checked="checked" type="checkbox" id="{{ device.title }}" name="devices"
+                           value="{{ device.slug }}">
+                {% else %}
+                    <input type="checkbox" id="{{ device.title }}" name="devices" value="{{ device.slug }}">
+                {% endif %}
+
+                <label for="{{ device.title }}">{{ device.title }}</label>
+            </div>
+        {% endfor %}
+
+    </div>
+
+    <div class="filters-group">
+        <h4>Language:</h4>
+
+        {% for language in languages %}
+            <div class="buttons_filter">
+                {% if language.slug in actives.languages %}
+                    <input checked="checked" type="checkbox" id="{{ language.title }}" name="languages"
+                           value="{{ language.slug }}">
+                {% else %}
+                    <input type="checkbox" id="{{ language.title }}" name="languages" value="{{ language.slug }}">
+                {% endif %}
+
+                <label for="{{ language.title }}">{{ language.title }}</label>
+            </div>
+        {% endfor %}
+
+    </div>
+
+    <button type="submit" class="btn d-flex w-100 justify-content-center">Filter</button>
+
+</form>

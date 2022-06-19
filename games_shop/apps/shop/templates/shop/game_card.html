@@ -1,0 +1,122 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% load game_filters %}
+
+{% block title %}
+    Games
+{% endblock %}
+
+{% block main_content %}
+
+    <div class="container position-relative">
+
+        {% if messages %}
+            {% for msg in messages %}
+                <div class="message-cart" id="msg-add">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>{{ msg }}</span>
+                </div>
+            {% endfor %}
+
+        {% endif %}
+
+        <div class="row game-detail-body">
+            <div class="col-12 d-flex justify-content-center">
+                <h1>{{ game.title }}</h1>
+            </div>
+            <div class="game-poster col-md-6 mb-4">
+                <img src="{{ game.poster.url }}" alt="poster-{{ game.title }}">
+            </div>
+            <div class="params col-md-6 mb-4">
+                <h3>About Game:</h3>
+                <ul>
+                    <li><b>Genre - </b>{{ game.genres }}</li>
+                    <li><b>Release - </b>{{ game.release_year|date:"d-m-Y" }}</li>
+                    <li><b>Author - </b>{{ game.companies }}</li>
+                    <li><b>Languages - </b>
+                        {% for language in languages %}
+                            {% if forloop.last %}
+                                {{ language.title }}.
+                            {% else %}
+                                {{ language.title }},
+                            {% endif %}
+                        {% endfor %}
+                    </li>
+                    <li><b>Devices - </b>
+                        {% for device in devices %}
+                            {% if forloop.last %}
+                                {{ device.title }}.
+                            {% else %}
+                                {{ device.title }},
+                            {% endif %}
+
+                        {% endfor %}
+                    </li>
+                    <li><b>Sold - </b>{{ game.buys }} pcs.</li>
+                </ul>
+                <div class="row game-price game-price-card">
+                    <div class="col-md-6 d-flex align-items-center flex-wrap prices">
+                        <span class="d-block w-100">Price: </span>
+                        {% if game.old_price == 0 %}
+                            <span class="price">{{ game.price }} USD</span>
+                        {% else %}
+                            <span class="old_price">{{ game.old_price }} USD</span>
+                            <span class="new_price">{{ game.price }} USD</span>
+                        {% endif %}
+                    </div>
+                    <div class="col-md-6 button-bl">
+                        <form action="{% url "cart:cart_add" game.id %}" method="post">
+                            {% csrf_token %}
+                            <span class="btc minus" type="button" onClick="change('amount',1,20,-1);"><i
+                                    class="fa-solid fa-minus"></i></span>
+                            <input class="val" id="amount" type="text" value="1" name="quantity"/>
+                            <span class="btc plus" type="button" onClick="change('amount',1,20, 1);"><i
+                                    class="fa-solid fa-plus"></i></span>
+                            <button id='add_to_cart_btn' class="btn" type="submit"><i
+                                    class="fa-solid fa-cart-shopping mr-2"></i> Buy
+                            </button>
+                        </form>
+
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-12 game-description">
+                {% autoescape off %}
+                    {{ game.description }}
+                {% endautoescape %}
+            </div>
+
+            {% if screen_shots %}
+
+                <div id="carouselExampleControls" class="col-md-8 offset-md-2 photo-carousel carousel slide"
+                     data-bs-ride="carousel">
+                    <div class="carousel-inner">
+
+                        {% for x in screen_shots %}
+
+                            <div class="carousel-item active">
+                                <img src="{{ x.screenshot.url }}" class="d-block w-100" alt="1">
+                            </div>
+
+                        {% endfor %}
+
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                            data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+            {% endif %}
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,7 @@
+venv
+.idea
+apps/__pycache__/
+apps/cart/__pycache__/
+apps/shop/__pycache__/
+apps/user/__pycache__/
+

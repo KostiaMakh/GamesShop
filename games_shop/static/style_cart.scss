@@ -1,0 +1,92 @@
+.order-info {
+  padding: 0 30px;
+
+
+  .inner-bl {
+    background-color: white;
+    padding: 20px 15px 30px;
+    box-shadow: -7px 11px 8px 0px rgba(34, 60, 80, 0.2);
+    position: relative;
+
+    &::after {
+      background: linear-gradient(-45deg, transparent 20px, #ffff 0),
+      linear-gradient(45deg, transparent 20px, #ffff 0);
+      background-position: left bottom;
+      background-size: 20px 20px;
+      content: "";
+      display: block;
+      height: 20px;
+      width: 100%;
+      bottom: -20px;
+      left: 0;
+      position: absolute;
+    }
+  }
+}
+
+.cart-total-amount {
+  margin-top: 30px;
+  width: 100%;
+  text-align: right;
+  font-size: 18px;
+  font-weight: bolder;
+
+  span {
+    margin-right: 20px;
+  }
+}
+
+.cart-act {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $main-green;
+    margin-left: 20px;
+    min-width: 180px;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: -6px 14px 11px 0px rgba(112, 124, 117, 0.2);
+    text-decoration: none;
+    color: whitesmoke;
+
+    span {
+
+      font-size: 16px;
+      font-weight: bolder;
+    }
+
+    &:hover {
+      transition: 0.3s;
+
+      background-color: whitesmoke;
+
+      a {
+        color: $main-green;
+      }
+
+    }
+  }
+
+  .update-cart {
+    visibility: hidden;
+    background-color: $auth-user;
+
+    &:hover {
+      transition: 0.3s;
+
+      background-color: whitesmoke;
+
+      a {
+        color: $auth-user;
+      }
+
+    }
+  }
+}

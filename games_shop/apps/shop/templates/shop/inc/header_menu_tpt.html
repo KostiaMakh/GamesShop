@@ -1,0 +1,43 @@
+<ul class="navbar-nav">
+    <li class="nav-item">
+        <a class="nav-link text-white" aria-current="page" href="{% url 'home' %}">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link text-white" aria-current="page" href="{% url 'games' %}">Games</a>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button"
+           aria-expanded="false">Genres</a>
+        <ul class="dropdown-menu bg-dark">
+
+            {% for genre in genres %}
+
+                <li><a class="dropdown-item text-white" href="{{ genre.get_absolute_url }}">{{ genre.title }}</a></li>
+
+            {% endfor %}
+
+        </ul>
+    </li>
+
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button"
+           aria-expanded="false">Studios</a>
+        <ul class="dropdown-menu bg-dark">
+
+            {% for company in companies %}
+
+                <li><a class="dropdown-item text-white" href="{{ company.get_absolute_url }}">{{ company.title }}</a></li>
+
+            {% endfor %}
+
+        </ul>
+
+    </li>
+
+{% if user.is_authenticated %}
+    <li class="nav-item">
+        <a class="nav-link add-games" aria-current="page" href="{% url 'add_game' %}">Add Game</a>
+    </li>
+{% endif %}
+
+</ul>
