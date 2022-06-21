@@ -1,9 +1,11 @@
 body {
   background-color: #d8d9d6;
   min-height: 100vh;
-  padding-bottom: 200px;
+  padding-bottom: 350px;
   position: relative; }
 
+header .navbar-toggler {
+  color: whitesmoke !important; }
 header .dropdown-menu {
   width: auto; }
 header ul {
@@ -405,5 +407,71 @@ footer {
     color: #0A66C2;
     transform: scale(1.2);
     transition: 0.3s; }
+
+.message-cart {
+  position: absolute;
+  width: 400px;
+  height: 60px;
+  padding: 5px 20px;
+  top: 30px;
+  left: 50%;
+  margin-left: -200px;
+  background-color: #d1e7dd;
+  border-radius: 10px;
+  border: 1px solid #0f5132;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 99; }
+  .message-cart i {
+    font-size: 35px;
+    color: #0f5132;
+    margin-right: 20px; }
+  .message-cart span {
+    font-size: 14px;
+    color: #0f5132; }
+
+.wl-header-active i {
+  color: #00a046; }
+
+.footer-links-block h4 {
+  font-weight: bolder;
+  margin-bottom: 12px;
+  color: white; }
+.footer-links-block a {
+  display: block;
+  color: white;
+  font-size: 14px;
+  margin-bottom: 10px;
+  text-decoration: none; }
+  .footer-links-block a:hover {
+    transform: scale(1.03);
+    color: #2eec82;
+    transition: 500ms; }
+
+.btn-login {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; }
+  .btn-login input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00a046;
+    margin-left: 20px;
+    min-width: 180px;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: -6px 14px 11px 0px rgba(112, 124, 117, 0.2);
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 16px;
+    font-weight: bolder; }
+  .btn-login:hover input {
+    color: #00a046;
+    transition: 0.3s;
+    background-color: whitesmoke; }
 
 /*# sourceMappingURL=style.css.map */

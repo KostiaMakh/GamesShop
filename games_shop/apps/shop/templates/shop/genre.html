@@ -7,33 +7,61 @@
 {% block main_content %}
 
     <div class="container">
-            <div class="row genre-main-block">
-                <div class="col-12 d-flex justify-content-center">
-                    <h1>{{ genre.title }}</h1>
+         {% if messages %}
+            {% for msg in messages %}
+                <div class="message-cart" id="msg-add">
+                    <i class="fa-solid fa-circle-check"></i>
+                    <span>{{ msg }}</span>
                 </div>
-                <div class="col-12 genre-description">
+            {% endfor %}
 
-                    {% if genre.photo %}
+        {% endif %}
 
-                        <img src="{{ genre.photo.url }}" alt="img-{{ genre.title }}">
+        <div class="row genre-main-block">
+            <div class="col-12 d-flex justify-content-center">
+                <h1>{{ genre.title }}</h1>
+            </div>
+            <div class="col-12 genre-description">
 
-                    {% endif %}
+                {% if genre.photo %}
 
-                    {% autoescape off %}
+                    <img src="{{ genre.photo.url }}" alt="img-{{ genre.title }}">
 
-                        {{ genre.description }}
+                {% endif %}
 
-                    {% endautoescape %}
+                {% autoescape off %}
 
-                </div>
-                <div class="col-12 games-list">
-                    <div class="row">
+                    {{ genre.description }}
 
-                         {% for game in games %}
+                {% endautoescape %}
+
+            </div>
+            <div class="col-12 games-list">
+                <div class="row">
+
+                    {% for game in games %}
                         <div class="col-xl-4 col-md-6 mb-3">
                             <div class="card h-100">
-                                <div class="card-header">
+                                <div class="card-header position-relative">
                                     {{ game.genres }}
+
+                                    {% if request.user.is_authenticated %}
+                                        {% if game in wishlist_gb %}
+                                            <a class="wishlist-toggle wishlist-active"
+                                               href="{% url "cart:wishlist_remove" game.id %}">
+                                                <i class="fa-solid fa-heart"></i>
+                                            </a>
+                                        {% else %}
+                                            <a class="wishlist-toggle" href="{% url "cart:wishlist_add" game.id %}">
+                                                <i class="fa-solid fa-heart"></i>
+                                            </a>
+                                        {% endif %}
+                                    {% else %}
+                                        <a class="wishlist-toggle" href="{% url "login" %}">
+                                            <i class="fa-solid fa-heart"></i>
+                                        </a>
+                                    {% endif %}
+
                                 </div>
                                 <div class="game-img">
                                     <a href='{{ game.get_absolute_url }}'>
@@ -65,11 +93,11 @@
                         </div>
                     {% endfor %}
 
-                    </div>
-
                 </div>
 
             </div>
+
+        </div>
 
     </div>
 

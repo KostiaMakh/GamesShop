@@ -1,76 +1,131 @@
-/*
-Error: Undefined variable: "$main-green".
-        on line 49 of style_cart.scss
+.order-info {
+  padding: 0 30px; }
+  .order-info .inner-bl {
+    background-color: white;
+    padding: 20px 15px 30px;
+    box-shadow: -7px 11px 8px 0px rgba(34, 60, 80, 0.2);
+    position: relative; }
+    .order-info .inner-bl::after {
+      background: linear-gradient(-45deg, transparent 20px, #ffff 0), linear-gradient(45deg, transparent 20px, #ffff 0);
+      background-position: left bottom;
+      background-size: 20px 20px;
+      content: "";
+      display: block;
+      height: 20px;
+      width: 100%;
+      bottom: -20px;
+      left: 0;
+      position: absolute; }
+    .order-info .inner-bl ul {
+      margin-bottom: 50px; }
+    .order-info .inner-bl li {
+      margin-bottom: 10px; }
+    .order-info .inner-bl p {
+      font-size: 15px;
+      position: relative;
+      text-align: right;
+      font-weight: bolder;
+      text-transform: uppercase; }
+      .order-info .inner-bl p:after {
+        display: block;
+        position: absolute;
+        top: -20px;
+        left: 0;
+        content: '';
+        width: 100%;
+        height: 1px;
+        background-color: rgba(89, 89, 89, 0.76); }
 
-44: 
-45:   a {
-46:     display: flex;
-47:     justify-content: center;
-48:     align-items: center;
-49:     background-color: $main-green;
-50:     margin-left: 20px;
-51:     min-width: 180px;
-52:     padding: 8px;
-53:     border: none;
-54:     border-radius: 5px;
+.cart-total-amount {
+  margin-top: 30px;
+  width: 100%;
+  text-align: right;
+  font-size: 18px;
+  font-weight: bolder; }
+  .cart-total-amount span {
+    margin-right: 20px; }
 
-Backtrace:
-style_cart.scss:49
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/script/tree/variable.rb:49:in `_perform'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/script/tree/node.rb:50:in `perform'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:398:in `visit_prop'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block (2 levels) in visit_rule'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `map'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block in visit_rule'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:438:in `visit_rule'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block (2 levels) in visit_rule'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `map'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:440:in `block in visit_rule'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:438:in `visit_rule'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `block in visit'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/stack.rb:79:in `block in with_base'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/stack.rb:135:in `with_frame'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/stack.rb:79:in `with_base'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:158:in `visit'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `block in visit_children'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `map'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:52:in `visit_children'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:167:in `block in visit_children'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:179:in `with_environment'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:166:in `visit_children'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `block in visit'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:186:in `visit_root'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/base.rb:36:in `visit'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:157:in `visit'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/visitors/perform.rb:10:in `visit'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/root_node.rb:36:in `css_tree'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/tree/root_node.rb:29:in `render_with_sourcemap'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/engine.rb:389:in `_render_with_sourcemap'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/engine.rb:307:in `render_with_sourcemap'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/exec/sass_scss.rb:383:in `run'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/exec/sass_scss.rb:63:in `process_result'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/exec/base.rb:50:in `parse'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/lib/sass/exec/base.rb:18:in `parse!'
-/usr/share/rubygems-integration/all/gems/sass-3.7.4/bin/scss:8:in `<top (required)>'
-/usr/bin/scss:25:in `load'
-/usr/bin/scss:25:in `<main>'
-*/
-body:before {
-  white-space: pre;
-  font-family: monospace;
-  content: "Error: Undefined variable: \"$main-green\".\A         on line 49 of style_cart.scss\A \A 44: \A 45:   a {\A 46:     display: flex;\A 47:     justify-content: center;\A 48:     align-items: center;\A 49:     background-color: $main-green;\A 50:     margin-left: 20px;\A 51:     min-width: 180px;\A 52:     padding: 8px;\A 53:     border: none;\A 54:     border-radius: 5px;"; }
+.cart-act {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; }
+  .cart-act a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00a046;
+    margin-left: 20px;
+    min-width: 180px;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: -6px 14px 11px 0px rgba(112, 124, 117, 0.2);
+    text-decoration: none;
+    color: whitesmoke; }
+    .cart-act a span {
+      font-size: 16px;
+      font-weight: bolder; }
+    .cart-act a:hover {
+      transition: 0.3s;
+      background-color: whitesmoke; }
+      .cart-act a:hover span {
+        color: #00a046; }
+  .cart-act .update-cart {
+    visibility: hidden;
+    background-color: #5eb7d0; }
+    .cart-act .update-cart:hover {
+      transition: 0.3s;
+      background-color: whitesmoke; }
+      .cart-act .update-cart:hover a {
+        color: #5eb7d0; }
+
+.btn-place-order {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center; }
+  .btn-place-order input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00a046;
+    margin-left: 20px;
+    min-width: 180px;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: -6px 14px 11px 0px rgba(112, 124, 117, 0.2);
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 16px;
+    font-weight: bolder; }
+  .btn-place-order:hover input {
+    color: #00a046;
+    transition: 0.3s;
+    background-color: whitesmoke; }
+
+.wishlist-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 20px !important;
+  width: 20px !important;
+  right: 12px;
+  top: 12px;
+  text-decoration: none;
+  z-index: 99; }
+  .wishlist-toggle i {
+    color: rgba(91, 214, 148, 0.4);
+    font-size: 20px; }
+  .wishlist-toggle:hover {
+    transform: scale(1.2);
+    transition: 400ms; }
+    .wishlist-toggle:hover i {
+      color: #00a046; }
+
+.wishlist-active i {
+  color: #00a046; }
+
+/*# sourceMappingURL=style_cart.css.map */

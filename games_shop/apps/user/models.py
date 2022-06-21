@@ -1,17 +1,8 @@
 from django.contrib.auth.base_user import AbstractBaseUser
 from django.contrib.auth.models import PermissionsMixin
 from django.db import models
-from django.contrib.auth.signals import user_logged_in
-from django.dispatch import receiver
-from rest_framework.authtoken.models import Token
 from .managers import CustomUserManager
-
-
-@receiver(user_logged_in)
-def create_auth_token(request, user, **kwargs):
-    # Add token for user if he's "staff"
-    if user.is_staff:
-        Token.objects.get_or_create(user=user)
+from shop.models import Game
 
 
 class User(AbstractBaseUser, PermissionsMixin):
@@ -45,6 +36,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     postal_code = models.PositiveIntegerField(blank=True,
                                               default=0,
                                               verbose_name='Postal code')
+    wishlist = models.ManyToManyField(Game)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
@@ -55,3 +47,9 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def __str__(self):
         return self.email
+
+
+class Basket(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    game = models.ForeignKey(Game, on_delete=models.CASCADE, default=None)
+    quantity = models.PositiveSmallIntegerField(default=1)

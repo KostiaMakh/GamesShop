@@ -1,3 +1,7 @@
+$main-green: #00a046;
+$hover-green: #2eec82;
+$auth-user: #5eb7d0;
+
 .order-info {
   padding: 0 30px;
 
@@ -20,6 +24,33 @@
       bottom: -20px;
       left: 0;
       position: absolute;
+    }
+
+    ul {
+      margin-bottom: 50px;
+    }
+
+    li {
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 15px;
+      position: relative;
+      text-align: right;
+      font-weight: bolder;
+      text-transform: uppercase;
+
+      &:after {
+        display: block;
+        position: absolute;
+        top: -20px;
+        left: 0;
+        content: '';
+        width: 100%;
+        height: 1px;
+        background-color: rgba(89, 89, 89, 0.76);
+      }
     }
   }
 }
@@ -67,7 +98,7 @@
 
       background-color: whitesmoke;
 
-      a {
+      span {
         color: $main-green;
       }
 
@@ -88,5 +119,73 @@
       }
 
     }
+  }
+}
+
+.btn-place-order {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $main-green;
+    margin-left: 20px;
+    min-width: 180px;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: -6px 14px 11px 0px rgba(112, 124, 117, 0.2);
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 16px;
+    font-weight: bolder;
+  }
+
+  &:hover {
+
+    input {
+      color: $main-green;
+      transition: 0.3s;
+
+      background-color: whitesmoke;
+    }
+
+  }
+}
+
+.wishlist-toggle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  height: 20px!important;
+  width: 20px!important;
+  right: 12px;
+  top: 12px;
+  text-decoration: none;
+  z-index: 99;
+
+  i {
+    color: rgba(91,214,148,0.4);
+    font-size: 20px;
+  }
+
+  &:hover{
+    transform: scale(1.2);
+    transition: 400ms;
+    i{
+      color: $main-green;
+    }
+  }
+}
+
+.wishlist-active {
+
+  i {
+    color: $main-green;
   }
 }

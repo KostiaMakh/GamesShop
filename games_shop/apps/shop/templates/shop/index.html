@@ -10,12 +10,12 @@
         <div class="d-flex justify-content-center">
             <h1>Games Shop</h1>
         </div>
-        <div class='main-games row'>
+        <div class='main-card row'>
 
             <h2>New arrivals</h2>
 
             {% for game in games %}
-                <div class="col-md-4">
+                <div class="col-md-4 mb-3">
                     <div class="card">
                         <div class="game-img">
                             <a href='{{ game.get_absolute_url }}'>
@@ -34,12 +34,12 @@
 
 
         </div>
-        <div class='main-comp row'>
+        <div class='main-card row'>
 
             <h2>Authors</h2>
 
             {% for company in companies %}
-                <div class="col-md-4">
+                <div class="col-md-4  mb-3">
                     <div class="card">
                         <div class="game-img">
                             <a href='{{ company.get_absolute_url }}'>
@@ -59,12 +59,12 @@
 
 
         </div>
-        <div class='main-genre row'>
+        <div class='main-card row'>
 
             <h2>Genres</h2>
 
             {% for genre in genres %}
-                <div class="col-md-4">
+                <div class="col-md-4 mb-3">
                     <div class="card">
                         <div class="game-img">
                             <a href='{{ genre.get_absolute_url }}'>

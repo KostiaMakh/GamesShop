@@ -31,11 +31,12 @@
             </div>
         </div>
 
-        {% if cart %}
-            {% for item in cart %}
-                {% with product=item.product %}
 
-                    <div class="row cart-item">
+        {% if cart %}
+            {% if user.is_authenticated %}
+                {% for item in cart %}
+                    {% with product=item.game.game %}
+                        <div class="row cart-item">
                         <div class="col-6 col-md-2 cart-photo">
                             <a href="{{ product.get_absolute_url }}">
                                 <img src="{{ product.poster.url }}">
@@ -48,7 +49,7 @@
                             <span>{{ product.price }} $</span>
                         </div>
                         <div class="col-3 col-md-2 cart-quantity d-flex align-items-center justify-content-center">
-                            <span>{{ item.quantity }}</span>
+                            <span>{{ item.game.quantity }}</span>
                         </div>
                         <div class="col-4 col-md-2 cart-sum d-flex align-items-center justify-content-center">
                             <span>{{ item.total_price }} $</span>
@@ -57,10 +58,42 @@
                             <a href="{% url "cart:cart_remove" product.id %}"><i class="fa-solid fa-xmark"></i></a>
                         </div>
                     </div>
+                    {% endwith %}
 
-                {% endwith %}
-            {% endfor %}
-            <p class="cart-total-amount"><span>Total amount:</span>{{ cart.get_total_price }} $</p>
+                {% endfor %}
+                <p class="cart-total-amount"><span>Total amount:</span>{{ total_price }} $</p>
+            {% else %}
+                {% for item in cart %}
+                    {% with product=item.product %}
+
+                        <div class="row cart-item">
+                            <div class="col-6 col-md-2 cart-photo">
+                                <a href="{{ product.get_absolute_url }}">
+                                    <img src="{{ product.poster.url }}">
+                                </a>
+                            </div>
+                            <div class="col-6 col-md-3 cart-title d-flex align-items-center">
+                                <span><a href="{{ product.get_absolute_url }}">{{ product.title }}</a></span>
+                            </div>
+                            <div class="col-3 col-md-2 cart-price d-flex align-items-center justify-content-center">
+                                <span>{{ product.price }} $</span>
+                            </div>
+                            <div class="col-3 col-md-2 cart-quantity d-flex align-items-center justify-content-center">
+                                <span>{{ item.quantity }}</span>
+                            </div>
+                            <div class="col-4 col-md-2 cart-sum d-flex align-items-center justify-content-center">
+                                <span>{{ item.total_price }} $</span>
+                            </div>
+                            <div class=" col-2 col-md-1 cart-remove d-flex align-items-center justify-content-center">
+                                <a href="{% url "cart:cart_remove" product.id %}"><i class="fa-solid fa-xmark"></i></a>
+                            </div>
+                        </div>
+
+                    {% endwith %}
+                {% endfor %}
+                <p class="cart-total-amount"><span>Total amount:</span>{{ cart.get_total_price }} $</p>
+            {% endif %}
+
         {% endif %}
         <div class="cart-act">
             <a href="{% url "games" %}"><span>Continue shopping</span></a>

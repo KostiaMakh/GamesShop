@@ -5,12 +5,14 @@ $auth-user: #5eb7d0;
 body {
   background-color: #d8d9d6;
   min-height: 100vh;
-  padding-bottom: 200px;
+  padding-bottom: 350px;
   position: relative;
 }
 
 header {
-
+  .navbar-toggler{
+    color: whitesmoke!important;
+  }
   .dropdown-menu {
     width: auto;
   }
@@ -624,5 +626,95 @@ footer {
         }
       }
     }
+  }
+}
+
+.message-cart {
+  position: absolute;
+  width: 400px;
+  height: 60px;
+  padding: 5px 20px;
+  top: 30px;
+  left: 50%;
+  margin-left: -200px;
+  background-color: #d1e7dd;
+  border-radius: 10px;
+  border: 1px solid #0f5132;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  z-index: 99;
+
+  i {
+    font-size: 35px;
+    color: #0f5132;
+    margin-right: 20px;
+  }
+
+  span {
+    font-size: 14px;
+    color: #0f5132;
+  }
+;
+}
+
+.wl-header-active {
+  i {
+    color: $main-green;
+  }
+}
+
+.footer-links-block{
+  h4{
+    font-weight: bolder;
+    margin-bottom: 12px;
+    color: white;
+  }
+  a{
+    display: block;
+    color: white;
+    font-size: 14px;
+    margin-bottom: 10px;
+    text-decoration: none;
+    &:hover{
+      transform: scale(1.03);
+      color: $hover-green;
+      transition: 500ms;
+    }
+  }
+}
+
+.btn-login {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: $main-green;
+    margin-left: 20px;
+    min-width: 180px;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: -6px 14px 11px 0px rgba(112, 124, 117, 0.2);
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 16px;
+    font-weight: bolder;
+  }
+
+  &:hover {
+
+    input {
+      color: $main-green;
+      transition: 0.3s;
+
+      background-color: whitesmoke;
+    }
+
   }
 }

@@ -10,8 +10,8 @@ class BaseModel(models.Model):
     def __str__(self):
         return self.title
 
-    def save(self):
-        super(BaseModel, self).save()
+    def save(self, *args, **kwargs):
+        super(BaseModel, self).save(*args, **kwargs)
         self.slug = f'{self.pk}-{slugify(str(self.title))}'
         super(BaseModel, self).save()
 

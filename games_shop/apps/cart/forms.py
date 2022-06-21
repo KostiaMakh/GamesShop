@@ -25,7 +25,6 @@ class OrderCreateForm(forms.ModelForm):
     postal_code = forms.IntegerField(label='Postal code',
                                      widget=forms.TextInput(attrs={'class': 'form-control'}))
 
-
     class Meta:
         model = Order
         fields = (
@@ -37,8 +36,3 @@ class OrderCreateForm(forms.ModelForm):
             'address',
             'postal_code',
         )
-
-
-# class WishlistAddProductForm(forms.Form):
-#     quantity = forms.TypedChoiceField(choices=PRODUCT_QUANTITY_CHOICES, coerce=int)
-#     update = forms.BooleanField(required=False, initial=False, widget=forms.HiddenInput)

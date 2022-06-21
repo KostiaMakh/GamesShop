@@ -208,3 +208,13 @@ CKEDITOR_CONFIGS = {
 CART_SESSION_ID = 'cart'
 
 WISHLIST_SESSION_ID = 'wishlist'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticatedOrReadOnly'
+        # 'rest_framework.permissions.IsAuthenticated'
+    ],
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+}
