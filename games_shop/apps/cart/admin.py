@@ -8,11 +8,27 @@ class OrderItemInline(admin.TabularInline):
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ['id', 'first_name', 'city', 'status', 'paid',
-                    'created_at', 'updated_at']
-    list_filter = ['paid', 'created_at', 'updated_at', 'status']
-    readonly_fields = ['created_at', 'updated_at', 'user']
-    inlines = [OrderItemInline]
+    list_display = (
+        'id',
+        'first_name',
+        'city',
+        'status',
+        'paid',
+        'created_at',
+        'updated_at'
+    )
+    list_filter = (
+        'paid',
+        'created_at',
+        'updated_at',
+        'status'
+    )
+    readonly_fields = (
+        'created_at',
+        'updated_at',
+        'user'
+    )
+    inlines = (OrderItemInline,)
     save_on_top = True
 
 

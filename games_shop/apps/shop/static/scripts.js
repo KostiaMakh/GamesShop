@@ -25,11 +25,7 @@ function autoHide() {
 
 function showFiltersBlock() {
     let filtersBlock = document.getElementById('filters')
+    filtersBlock.style.display = filtersBlock.style.display === 'none' ? 'block' : 'none'
 
-    if (window.screen.availWidth <= 576) {
-        filtersBlock.style.display = filtersBlock.style.display === 'none' ? 'block' : 'none'
-    } else {
-        filtersBlock.style.display = 'block'
-    }
 
 }

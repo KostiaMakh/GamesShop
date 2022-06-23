@@ -1,9 +1,7 @@
 from django.contrib.auth import login, logout, authenticate
 from .forms import UserLoginForm, CustomUserCreationForm
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
-from .models import User
 
 
 def user_register(request):
@@ -13,15 +11,30 @@ def user_register(request):
             form.save()
             email = form.cleaned_data.get('email')
             raw_password = form.cleaned_data.get('password1')
-            user_auth = authenticate(email=email, password=raw_password)
+            user_auth = authenticate(
+                email=email,
+                password=raw_password
+            )
             login(request, user_auth)
-            messages.add_message(request, messages.INFO, 'User created!')
+            messages.add_message(
+                request,
+                messages.INFO,
+                'User created!'
+            )
         else:
-            messages.add_message(request, messages.ERROR, 'Uncorrect data. Try again!')
+            messages.add_message(
+                request,
+                messages.ERROR,
+                'Uncorrect data. Try again!'
+            )
     else:
         form = CustomUserCreationForm()
 
-    return render(request, 'user/register.html', {'form': form})
+    return render(
+        request,
+        'user/register.html',
+        {'form': form}
+    )
 
 
 def user_login(request):
@@ -33,7 +46,11 @@ def user_login(request):
             return redirect('home')
     else:
         form = UserLoginForm()
-    return render(request, 'user/login.html', {'form': form})
+    return render(
+        request,
+        'user/login.html',
+        {'form': form}
+    )
 
 
 def user_logout(request):

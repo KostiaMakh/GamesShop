@@ -20,7 +20,6 @@ class MainPage(ListView):
     context_object_name = 'games'
     extra_context = {
         'genres': Genre.objects.annotate(cat=Count('game', filter=F('game__id'))).filter(cat__gt=0),
-        # 'devices': Device.objects.annotate(cat=Count('game', filter=F('game__id'))).filter(cat__gt=0),
         'promos': Promo.objects.filter(is_active=True),
         'companies': Company.objects.all()
     }
@@ -50,7 +49,10 @@ class GenrePage(ListView):
     paginate_by = 9
 
     def get_queryset(self):
-        return Game.objects.filter(genres__slug=self.kwargs['slug'], is_published=True)
+        return Game.objects.filter(
+            genres__slug=self.kwargs['slug'],
+            is_published=True
+        )
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -64,8 +66,10 @@ class CompanyPage(ListView):
     paginate_by = 9
 
     def get_queryset(self):
-        return Game.objects.filter(companies__slug=self.kwargs['slug'], is_published=True)
-        # return Company.objects.get(slug=self.kwargs['slug'])
+        return Game.objects.filter(
+            companies__slug=self.kwargs['slug'],
+            is_published=True
+        )
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)

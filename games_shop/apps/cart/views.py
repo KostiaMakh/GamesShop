@@ -22,7 +22,8 @@ def cart_add(request, product_id):
             try:
                 game_in_basket = Basket.objects.get(
                     user=request.user,
-                    game=game)
+                    game=game
+                )
                 game_in_basket.quantity = F('quantity') + cd['quantity']
                 game_in_basket.save()
 
@@ -34,11 +35,17 @@ def cart_add(request, product_id):
                 )
         else:
             cart = Cart(request)
-            cart.add(product=game,
-                     quantity=cd['quantity'],
-                     update_quantity=cd['update'])
+            cart.add(
+                product=game,
+                quantity=cd['quantity'],
+                update_quantity=cd['update']
+            )
 
-        messages.add_message(request, messages.INFO, f'Good added to cart.')
+        messages.add_message(
+            request,
+            messages.INFO,
+            f'Good added to cart.'
+        )
 
     return redirect(request.META.get('HTTP_REFERER'))
 
@@ -46,8 +53,10 @@ def cart_add(request, product_id):
 def cart_remove(request, product_id):
     if request.user.is_authenticated:
         game = get_object_or_404(Game, id=product_id)
-        removed_game = Basket.objects.get(user=request.user,
-                                          game=game)
+        removed_game = Basket.objects.get(
+            user=request.user,
+            game=game
+        )
         removed_game.delete()
     else:
         cart = Cart(request)
@@ -71,11 +80,19 @@ def cart_detail(request):
         total_amount = 0
         for item in cart:
             total_amount += item['total_price']
-        return render(request, 'cart/cart.html', {'cart': cart, 'total_amount': total_amount})
+        return render(
+            request,
+            'cart/cart.html',
+            {'cart': cart, 'total_amount': total_amount}
+        )
 
     else:
         cart = Cart(request)
-        return render(request, 'cart/cart.html', {'cart': cart})
+        return render(
+            request,
+            'cart/cart.html',
+            {'cart': cart}
+        )
 
 
 def order_create(request):
@@ -102,11 +119,14 @@ def order_create(request):
             )
 
             if request.user.is_authenticated:
+                cart = Basket.objects.filter(user=request.user)
                 for item in cart:
-                    OrderItem.objects.create(order=order,
-                                             game=item.game,
-                                             price=item.game.price,
-                                             quantity=item.quantity)
+                    OrderItem.objects.create(
+                        order=order,
+                        game=item.game,
+                        price=item.game.price,
+                        quantity=item.quantity
+                    )
 
                     game = Game.objects.get(pk=item.game.pk)
                     game.buys = F('buys') + item.quantity
@@ -115,10 +135,12 @@ def order_create(request):
 
             else:
                 for item in cart:
-                    OrderItem.objects.create(order=order,
-                                             game=item['product'],
-                                             price=item['price'],
-                                             quantity=item['quantity'])
+                    OrderItem.objects.create(
+                        order=order,
+                        game=item['product'],
+                        price=item['price'],
+                        quantity=item['quantity']
+                    )
 
                     game = Game.objects.get(pk=item['product'].pk)
                     game.buys = F('buys') + item['quantity']
@@ -141,11 +163,16 @@ def order_create(request):
                 total_price += item.game.price * item.quantity
                 cart.append(game_detail)
                 print(cart[0])
-            return render(request, 'cart/order_create.html',
-                          {'cart': cart, 'form': form, 'total_price': total_price})
+            return render(
+                request,
+                'cart/order_create.html',
+                {'cart': cart, 'form': form, 'total_price': total_price}
+            )
         else:
-            return render(request, 'cart/order_create.html',
-                          {'cart': cart, 'form': form})
+            return render(
+                request, 'cart/order_create.html',
+                {'cart': cart, 'form': form}
+            )
 
 
 # wishlist vies
@@ -154,7 +181,11 @@ def wishlist_add(request, product_id):
     game = Game.objects.get(pk=int(product_id))
     user.wishlist.add(game)
     user.save()
-    messages.add_message(request, messages.INFO, f'Game added to wishlist.')
+    messages.add_message(
+        request,
+        messages.INFO,
+        f'Game added to wishlist.'
+    )
     return redirect(request.META.get('HTTP_REFERER'))
 
 
@@ -169,4 +200,7 @@ def wishlist_remove(request, product_id):
 
 @login_required
 def wishlist_detail(request):
-    return render(request, 'cart/wishlist_detail.html')
+    return render(
+        request,
+        'cart/wishlist_detail.html'
+    )

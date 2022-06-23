@@ -22,48 +22,78 @@ class BaseModel(models.Model):
 
 class Genre(BaseModel):
     description = models.TextField()
-    photo = models.ImageField(upload_to='photos/%Y/%m/%d',
-                              blank=True)
+    photo = models.ImageField(
+        upload_to='photos/%Y/%m/%d',
+        blank=True
+    )
 
     def get_absolute_url(self):
-        return reverse('genre', kwargs={'slug': self.slug})
+        return reverse(
+            'genre',
+            kwargs={'slug': self.slug}
+        )
 
 
 class Game(BaseModel):
     description = models.TextField()
-    poster = models.ImageField(upload_to='photos/%Y/%m/%d',
-                               blank=True)
+    poster = models.ImageField(
+        upload_to='photos/%Y/%m/%d',
+        blank=True
+    )
     release_year = models.DateField()
-    companies = models.ForeignKey('Company',
-                                  on_delete=models.PROTECT)
+    companies = models.ForeignKey(
+        'Company',
+        on_delete=models.PROTECT
+    )
     languages = models.ManyToManyField('Language')
     devices = models.ManyToManyField('Device')
-    genres = models.ForeignKey('Genre',
-                               on_delete=models.PROTECT)
-    promos = models.ManyToManyField('Promo',
-                                    blank=True)
+    genres = models.ForeignKey(
+        'Genre',
+        on_delete=models.PROTECT
+    )
+    promos = models.ManyToManyField(
+        'Promo',
+        blank=True
+    )
     price = models.PositiveIntegerField()
-    old_price = models.PositiveIntegerField(default=0,
-                                            blank=True)
+    old_price = models.PositiveIntegerField(
+        default=0,
+        blank=True
+    )
     buys = models.PositiveIntegerField(default=0)
-    owner = models.ForeignKey('user.User',
-                              on_delete=models.CASCADE,
-                              default=1)
-    is_published = models.BooleanField(default=False)
-    status = models.ForeignKey('Status',
-                               on_delete=models.PROTECT)
+    owner = models.ForeignKey(
+        'user.User',
+        on_delete=models.CASCADE,
+        default=1
+    )
+    is_published = models.BooleanField(
+        default=False,
+        verbose_name='Display'
+    )
+    status = models.ForeignKey(
+        'Status',
+        on_delete=models.PROTECT
+    )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
     def get_absolute_url(self):
-        return reverse('game', kwargs={'slug': self.slug})
+        return reverse(
+            'game',
+            kwargs={'slug': self.slug}
+        )
 
 
 class ScreenShot(models.Model):
-    game = models.ForeignKey('Game',
-                             on_delete=models.CASCADE)
-    screenshot = models.ImageField(upload_to='photos/%Y/%m/%d',
-                                   blank=True)
+    game = models.ForeignKey(
+        'Game',
+        on_delete=models.CASCADE,
+        related_name='screenshots'
+    )
+    screenshot = models.ImageField(
+        upload_to='photos/%Y/%m/%d',
+        blank=True
+    )
 
 
 class Status(models.Model):
@@ -80,11 +110,16 @@ class Status(models.Model):
 class Company(BaseModel):
     description = models.TextField()
     foundation = models.DateField()
-    logo = models.ImageField(upload_to='photos/%Y/%m/%d',
-                             blank=True)
+    logo = models.ImageField(
+        upload_to='photos/%Y/%m/%d',
+        blank=True
+    )
 
     def get_absolute_url(self):
-        return reverse('company', kwargs={'slug': self.slug})
+        return reverse(
+            'company',
+            kwargs={'slug': self.slug}
+        )
 
     class Meta:
         verbose_name_plural = 'Companies'
@@ -100,8 +135,10 @@ class Device(BaseModel):
 
 class Promo(BaseModel):
     description = models.TextField()
-    banner = models.ImageField(upload_to='photos/%Y/%m/%d',
-                               blank=True)
+    banner = models.ImageField(
+        upload_to='photos/%Y/%m/%d',
+        blank=True
+    )
     start_date = models.DateTimeField()
     expiration_date = models.DateTimeField()
     is_active = models.BooleanField(default=False)

@@ -12,21 +12,28 @@ ORDER_STATUS = (
 
 
 class Order(models.Model):
-    user = models.ForeignKey(User,
-                             on_delete=models.PROTECT,
-                             null=True,
-                             blank=True)
+    user = models.ForeignKey(
+        User,
+        on_delete=models.PROTECT,
+        null=True,
+        blank=True,
+        related_name='orders'
+    )
     first_name = models.CharField(max_length=128)
     last_name = models.CharField(max_length=128)
     email = models.EmailField(max_length=256)
-    phone = models.CharField(max_length=128,
-                             default='')
+    phone = models.CharField(
+        max_length=128,
+        default=''
+    )
     address = models.CharField(max_length=256)
     postal_code = models.PositiveIntegerField()
     city = models.CharField(max_length=128)
-    status = models.CharField(max_length=256,
-                              choices=ORDER_STATUS,
-                              default="Created")
+    status = models.CharField(
+        max_length=256,
+        choices=ORDER_STATUS,
+        default="Created"
+    )
     paid = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -42,14 +49,20 @@ class Order(models.Model):
 
 
 class OrderItem(models.Model):
-    order = models.ForeignKey(Order,
-                              related_name='items',
-                              on_delete=models.CASCADE)
-    game = models.ForeignKey(Game,
-                             related_name='order_items',
-                             on_delete=models.PROTECT)
-    price = models.DecimalField(max_digits=10,
-                                decimal_places=2)
+    order = models.ForeignKey(
+        Order,
+        related_name='items',
+        on_delete=models.CASCADE
+    )
+    game = models.ForeignKey(
+        Game,
+        related_name='order_items',
+        on_delete=models.PROTECT
+    )
+    price = models.DecimalField(
+        max_digits=10,
+        decimal_places=2
+    )
     quantity = models.PositiveIntegerField(default=1)
 
     def __str__(self):

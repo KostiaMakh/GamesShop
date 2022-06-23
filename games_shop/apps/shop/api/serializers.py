@@ -4,7 +4,15 @@ from shop.models import (
     Language,
     Device,
     Company,
+    Game,
+    ScreenShot,
 )
+
+
+class GamePhotoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ScreenShot
+        fields = ('screenshot', )
 
 
 class GenreSerializer(serializers.ModelSerializer):
@@ -51,8 +59,20 @@ class CompanySerializer(serializers.ModelSerializer):
             'id',
         )
 
+
 class CompanyCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Device
         fields = serializers.ALL_FIELDS
 
+
+class GameSerializer(serializers.ModelSerializer):
+    companies = CompanySerializer(many=False)
+    genres = GenreSerializer(many=False)
+    languages = LanguageSerializer(many=True)
+    devices = DeviceSerializer(many=True)
+    screenshots = GamePhotoSerializer(many=True)
+
+    class Meta:
+        model = Game
+        fields = serializers.ALL_FIELDS

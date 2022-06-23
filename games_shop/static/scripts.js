@@ -26,4 +26,6 @@ function autoHide() {
 function showFiltersBlock() {
     let filtersBlock = document.getElementById('filters')
     filtersBlock.style.display = filtersBlock.style.display === 'none' ? 'block' : 'none'
+
+
 }

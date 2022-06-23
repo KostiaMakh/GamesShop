@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django import forms
 from ckeditor_uploader.widgets import CKEditorUploadingWidget
+from django.utils.safestring import mark_safe
+
 from .models import (
     Genre,
     Game,
@@ -27,9 +29,15 @@ class GenreAdmin(admin.ModelAdmin):
 class StatusAdmin(admin.ModelAdmin):
     model = Status
     save_on_top = True
-    list_display = ('status', 'is_default')
+    list_display = (
+        'status',
+        'is_default'
+    )
     list_editable = ('is_default',)
-    search_fields = ('status', 'is_default')
+    search_fields = (
+        'status',
+        'is_default'
+    )
     exclude = ('slug',)
 
 
@@ -67,6 +75,19 @@ class GameAdmin(admin.ModelAdmin):
     model = Company
     form = ContentField
     inlines = [ScreenShortsInline, ]
+    search_fields = ('title',)
+    list_filter = (
+        'is_published',
+        'status',
+    )
+    list_display = ('id',
+                    'title',
+                    'price',
+                    'old_price',
+                    'get_poster',
+                    'is_published',
+                    'status',
+                    )
     save_on_top = True
     exclude = (
         'slug',
@@ -76,11 +97,11 @@ class GameAdmin(admin.ModelAdmin):
         'updated_at',
     )
 
-    # def get_photo(self, obj):
-    #     if obj.photo:
-    #         return mark_safe(f'<img src="{obj.photo.url}" width="75px">')
-    #
-    # get_photo.short_description = 'Фото'
+    def get_poster(self, obj):
+        if obj.poster:
+            return mark_safe(f'<img src="{obj.poster.url}" height="80px"')
+
+    get_poster.short_description = 'Poster'
 
 
 admin.site.register(Genre, GenreAdmin)

@@ -1,5 +1,4 @@
 from django import template
-from django.db.models import F, Count
 from shop.models import (
     Genre,
     Company,

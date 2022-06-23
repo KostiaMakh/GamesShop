@@ -16,7 +16,16 @@ from shop.api.serializers import (
     DeviceCreateSerializer,
     CompanySerializer,
     CompanyCreateSerializer,
+    GameSerializer,
 )
+
+
+class GameApiView(viewsets.ModelViewSet):
+    queryset = Game.objects.all()
+
+    def get_serializer_class(self):
+        if self.request.method == "GET":
+            return GameSerializer
 
 
 class GenreApiView(viewsets.ModelViewSet):

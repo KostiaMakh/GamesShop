@@ -1,6 +1,5 @@
 from django import template
 from shop.models import Genre, Company, Game
-from django.db.models import F, Count
 
 register = template.Library()
 
