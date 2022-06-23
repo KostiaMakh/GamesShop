@@ -4,6 +4,8 @@
 
 {% load game_filters %}
 
+{% load pagination %}
+
 {% block title %}
     Games
 {% endblock %}
@@ -14,12 +16,12 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-md-3 side-bar">
-
+            <div class="col-sm-4 col-md-3 side-bar">
+                <span onclick="showFiltersBlock()" class="filter-button"><i class="fa-solid fa-filter"></i></span>
                 {% show_filters %}
 
             </div>
-            <div class="col-md-9 position-relative">
+            <div class="col-sm-8 col-md-9 position-relative">
 
                 {% if messages %}
                     {% for msg in messages %}
@@ -73,8 +75,8 @@
                                             {% if game.old_price == 0 %}
                                                 <span class="price">{{ game.price }} USD</span>
                                             {% else %}
-                                                <span class="old_price">{{ game.old_price }} USD</span>
-                                                <span class="new_price">{{ game.price }} USD</span>
+                                                <span class="old-price">{{ game.old_price }} USD</span>
+                                                <span class="new-price">{{ game.price }} USD</span>
                                             {% endif %}
 
                                         </div>
@@ -96,6 +98,8 @@
                         </div>
                     {% endfor %}
                 </div>
+
+            {% show_pagination %}
 
             </div>
         </div>

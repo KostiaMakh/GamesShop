@@ -189,3 +189,23 @@ $auth-user: #5eb7d0;
     color: $main-green;
   }
 }
+
+@media screen and (max-width: 992px) {
+  .cart-header{
+    display: none;
+  }
+  .cart-act{
+    justify-content: space-between;
+    flex-wrap: wrap;
+    a{
+      margin: 0 0 14px 0;
+      width: 100%;
+    }
+  }
+  .btn-place-order {
+    input{
+      width: 100%;
+      margin: 0;
+    }
+  }
+}

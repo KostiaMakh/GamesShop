@@ -67,12 +67,10 @@ def cart_detail(request):
                 'total_price': good.game.price * good.quantity
             }
             cart.append(detail_game)
-            print(cart)
 
         total_amount = 0
         for item in cart:
             total_amount += item['total_price']
-
         return render(request, 'cart/cart.html', {'cart': cart, 'total_amount': total_amount})
 
     else:
@@ -134,19 +132,20 @@ def order_create(request):
     else:
         form = OrderCreateForm
 
-    if request.user.is_authenticated:
-        goods_in_cart = Basket.objects.filter(user=request.user)
-        cart = []
-        for item in goods_in_cart:
-            cart = {'game': item,
-                    'amount': item.game.price * item.quantity}
-            total_price += item.game.price * item.quantity
-
-        return render(request, 'cart/order_create.html',
-                      {'cart': cart, 'form': form, 'total_price': total_price})
-    else:
-        return render(request, 'cart/order_create.html',
-                      {'cart': cart, 'form': form})
+        if request.user.is_authenticated:
+            goods_in_cart = Basket.objects.filter(user=request.user)
+            cart = []
+            for item in goods_in_cart:
+                game_detail = {'game': item,
+                               'amount': item.game.price * item.quantity}
+                total_price += item.game.price * item.quantity
+                cart.append(game_detail)
+                print(cart[0])
+            return render(request, 'cart/order_create.html',
+                          {'cart': cart, 'form': form, 'total_price': total_price})
+        else:
+            return render(request, 'cart/order_create.html',
+                          {'cart': cart, 'form': form})
 
 
 # wishlist vies

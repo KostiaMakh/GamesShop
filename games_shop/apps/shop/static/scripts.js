@@ -22,3 +22,14 @@ function msgDecor() {
 function autoHide() {
     setTimeout(msgDecor, 700);
 }
+
+function showFiltersBlock() {
+    let filtersBlock = document.getElementById('filters')
+
+    if (window.screen.availWidth <= 576) {
+        filtersBlock.style.display = filtersBlock.style.display === 'none' ? 'block' : 'none'
+    } else {
+        filtersBlock.style.display = 'block'
+    }
+
+}

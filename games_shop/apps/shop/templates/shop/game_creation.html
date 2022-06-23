@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% block title %}Add game{% endblock %}
+
 {% block main_content %}
     <div class="col-12 d-flex justify-content-center">
         <h1>Add game into catalogue</h1>
@@ -26,7 +28,10 @@
 
             {% csrf_token %}
             {{ form.as_p }}
-            <button type="submit" class="btn btn-primary btn-block">Add game</button>
+            <div class="add-game">
+                <input type="submit" value="Add game">
+            </div>
+{#
         </form>
 
     </div>

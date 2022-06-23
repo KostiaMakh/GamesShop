@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load pagination %}
+
 {% block title %}
     {{ genre.title }}
 {% endblock %}
@@ -21,6 +23,8 @@
             <div class="col-12 d-flex justify-content-center">
                 <h1>{{ genre.title }}</h1>
             </div>
+
+        {% if page_obj.number == 1 %}
             <div class="col-12 genre-description">
 
                 {% if genre.photo %}
@@ -36,6 +40,8 @@
                 {% endautoescape %}
 
             </div>
+        {% endif %}
+
             <div class="col-12 games-list">
                 <div class="row">
 
@@ -94,6 +100,8 @@
                     {% endfor %}
 
                 </div>
+
+                {% show_pagination %}
 
             </div>
 

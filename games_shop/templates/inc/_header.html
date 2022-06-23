@@ -1,71 +1,56 @@
 {% load header_menu %}
 
+
 <header>
     <nav class="navbar navbar-expand-lg bg-dark">
         <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-            <a class="navbar-brand text-white" href="{% url 'home' %}">GamesShop</a>
+            <div class="row w-100 m-0 p-0">
+                <div class="col-2 justify-content-start navbar-toggler-bl">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fa-solid fa-bars"></i>
+                    </button>
+                </div>
+                <a class="col-7 col-lg-3 navbar-brand text-white m-0" href="{% url 'home' %}">GamesShop</a>
+                <div class="col-3 col-lg-1 justify-content-end mobile-cart order-lg-4">
+                    {% if user.is_authenticated %}
 
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                        {% if wishlist_gb|length > 0 %}
+                            <a class="cart-fav wl-header-active" href="{% url 'wishlist_detail' %}">
+                                <i class="fa-solid fa-heart"></i>
+                            </a>
+                        {% else %}
+                            <a class="cart-fav" href="{% url 'wishlist_detail' %}">
+                                <i class="fa-solid fa-heart"></i>
+                            </a>
+                        {% endif %}
 
-                {% show_menu %}
-
-                <div class="header-auth">
-                    {% if request.user.is_authenticated %}
-                        <span class="nic-name">{{ request.user.email }}</span>
-                        <span><a class="text-white" href="{% url 'logout' %}">Logout</a></span>
-                    {% else %}
-                        <span><a class="text-white" href="{% url 'login' %}">Login</a></span>
-                        <span><a class="text-white" href="{% url 'register' %}">Register</a></span>
                     {% endif %}
+
+                    <a class="cart-fav" href="{% url 'cart_detail' %}">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        {% if cart_gb > 0 %}
+                            <span>{{ cart_gb }}</span>
+                        {% endif %}
+                    </a>
+                </div>
+                <div class="col-12 col-lg-8 collapse navbar-collapse justify-content-end m-0 order-12 order-lg-0" id="navbarNav">
+
+                    {% show_menu %}
+
+                    <div class="header-auth">
+                        {% if request.user.is_authenticated %}
+                            <span class="nic-name">{{ request.user.email }}</span>
+                            <span><a class="text-white" href="{% url 'logout' %}">Logout</a></span>
+                        {% else %}
+                            <span><a class="text-white" href="{% url 'login' %}">Login</a></span>
+                            <span><a class="text-white" href="{% url 'register' %}">Register</a></span>
+                        {% endif %}
+                    </div>
+
                 </div>
 
-{#                {% if user.is_authenticated %}#}
-{##}
-{#                    {% if wishlist_gb|length > 0 %}#}
-{#                        <a class="cart_fav wl-header-active" href="{% url 'wishlist_detail' %}">#}
-{#                            <i class="fa-solid fa-heart"></i>#}
-{#                        </a>#}
-{#                    {% else %}#}
-{#                        <a class="cart_fav" href="{% url 'wishlist_detail' %}">#}
-{#                            <i class="fa-solid fa-heart"></i>#}
-{#                        </a>#}
-{#                    {% endif %}#}
-{##}
-{#                {% endif %}#}
-{##}
-{#                <a class="cart_fav" href="{% url 'cart_detail' %}">#}
-{#                    <i class="fa-solid fa-cart-shopping"></i>#}
-{#                    {% if cart_gb > 0 %}#}
-{#                        <span>{{ cart_gb }}</span>#}
-{#                    {% endif %}#}
-{#                </a>#}
-
-            </div>
-            <div class="mobile-cart">
-                {% if user.is_authenticated %}
-
-                    {% if wishlist_gb|length > 0 %}
-                        <a class="cart-fav wl-header-active" href="{% url 'wishlist_detail' %}">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    {% else %}
-                        <a class="cart-fav" href="{% url 'wishlist_detail' %}">
-                            <i class="fa-solid fa-heart"></i>
-                        </a>
-                    {% endif %}
-
-                {% endif %}
-
-                <a class="cart-fav" href="{% url 'cart_detail' %}">
-                    <i class="fa-solid fa-cart-shopping"></i>
-                    {% if cart_gb > 0 %}
-                        <span>{{ cart_gb }}</span>
-                    {% endif %}
-                </a>
             </div>
 
         </div>

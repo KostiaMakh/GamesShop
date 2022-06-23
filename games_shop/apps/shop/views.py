@@ -1,7 +1,6 @@
 from django.views.generic import ListView, DetailView, CreateView
 from django.db.models import F, Count, Q
 from django.contrib.auth.mixins import LoginRequiredMixin
-from rest_framework import viewsets
 from .models import (
     Game,
     Genre,
@@ -11,7 +10,6 @@ from .models import (
     Language,
     ScreenShot,
 )
-
 from .forms import GameCreationForm
 from cart.forms import CartAddProductForm
 
@@ -34,6 +32,7 @@ class MainPage(ListView):
 class GamesPage(ListView):
     template_name = 'shop/games.html'
     context_object_name = 'games'
+    paginate_by = 9
 
     def get_queryset(self):
         return Game.objects.filter(is_published=True).order_by('-created_at')
@@ -47,27 +46,30 @@ class GamesPage(ListView):
 
 class GenrePage(ListView):
     template_name = 'shop/genre.html'
-    context_object_name = 'genre'
+    context_object_name = 'games'
+    paginate_by = 9
 
     def get_queryset(self):
-        return Genre.objects.get(slug=self.kwargs['slug'])
+        return Game.objects.filter(genres__slug=self.kwargs['slug'], is_published=True)
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['games'] = Game.objects.filter(genres__slug=self.kwargs['slug'], is_published=True)
+        context['genre'] = Genre.objects.get(slug=self.kwargs['slug'])
         return context
 
 
 class CompanyPage(ListView):
     template_name = 'shop/company.html'
-    context_object_name = 'company'
+    context_object_name = 'games'
+    paginate_by = 9
 
     def get_queryset(self):
-        return Company.objects.get(slug=self.kwargs['slug'])
+        return Game.objects.filter(companies__slug=self.kwargs['slug'], is_published=True)
+        # return Company.objects.get(slug=self.kwargs['slug'])
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['games'] = Game.objects.filter(companies__slug=self.kwargs['slug'], is_published=True)
+        context['company'] = Company.objects.get(slug=self.kwargs['slug'])
         return context
 
 

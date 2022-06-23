@@ -5,7 +5,7 @@
 {% load game_filters %}
 
 {% block title %}
-    Your wishlist
+    Wishlist
 {% endblock %}
 
 {% block main_content %}
@@ -41,8 +41,8 @@
                                     {% if game.old_price == 0 %}
                                         <span class="price">{{ game.price }} USD</span>
                                     {% else %}
-                                        <span class="old_price">{{ game.old_price }} USD</span>
-                                        <span class="new_price">{{ game.price }} USD</span>
+                                        <span class="old-price">{{ game.old_price }} USD</span>
+                                        <span class="new-price">{{ game.price }} USD</span>
                                     {% endif %}
 
                                 </div>
@@ -54,7 +54,6 @@
                                         <button id='add_to_cart_btn' class="btn" type="submit"><i
                                                 class="fa-solid fa-cart-shopping mr-2"></i></button>
                                     </form>
-                                    {#                                            <button class="btn"><i class="fa-solid fa-cart-shopping"></i></button>#}
                                 </div>
                             </div>
 

@@ -58,12 +58,12 @@
                 </ul>
                 <div class="row game-price game-price-card">
                     <div class="col-md-6 d-flex align-items-center flex-wrap prices">
-                        <span class="d-block w-100">Price: </span>
+                        <span class="d-block lg-w-100 w-30">Price: </span>
                         {% if game.old_price == 0 %}
                             <span class="price">{{ game.price }} USD</span>
                         {% else %}
-                            <span class="old_price">{{ game.old_price }} USD</span>
-                            <span class="new_price">{{ game.price }} USD</span>
+                            <span class="old-price">{{ game.old_price }} USD</span>
+                            <span class="new-price">{{ game.price }} USD</span>
                         {% endif %}
                     </div>
                     <div class="col-md-6 button-bl">

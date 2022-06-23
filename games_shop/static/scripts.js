@@ -22,3 +22,8 @@ function msgDecor() {
 function autoHide() {
     setTimeout(msgDecor, 700);
 }
+
+function showFiltersBlock() {
+    let filtersBlock = document.getElementById('filters')
+    filtersBlock.style.display = filtersBlock.style.display === 'none' ? 'block' : 'none'
+}

@@ -128,4 +128,19 @@
 .wishlist-active i {
   color: #00a046; }
 
+@media screen and (max-width: 992px) {
+  .cart-header {
+    display: none; }
+
+  .cart-act {
+    justify-content: space-between;
+    flex-wrap: wrap; }
+    .cart-act a {
+      margin: 0 0 14px 0;
+      width: 100%; }
+
+  .btn-place-order input {
+    width: 100%;
+    margin: 0; } }
+
 /*# sourceMappingURL=style_cart.css.map */
