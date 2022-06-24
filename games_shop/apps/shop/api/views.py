@@ -7,6 +7,7 @@ from shop.models import (
     Device,
     Language,
     ScreenShot,
+    Status
 )
 from shop.api.serializers import (
     GenreSerializer,
@@ -17,6 +18,7 @@ from shop.api.serializers import (
     CompanySerializer,
     CompanyCreateSerializer,
     GameSerializer,
+    GameCreateSerializer,
 )
 
 
@@ -26,6 +28,8 @@ class GameApiView(viewsets.ModelViewSet):
     def get_serializer_class(self):
         if self.request.method == "GET":
             return GameSerializer
+        else:
+            return GameCreateSerializer
 
 
 class GenreApiView(viewsets.ModelViewSet):

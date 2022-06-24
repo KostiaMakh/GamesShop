@@ -76,3 +76,15 @@ class GameSerializer(serializers.ModelSerializer):
     class Meta:
         model = Game
         fields = serializers.ALL_FIELDS
+
+
+class GameCreateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Game
+        exclude = (
+            'id',
+            'slug',
+            'created_at',
+            'updated_at',
+            'buys',
+        )

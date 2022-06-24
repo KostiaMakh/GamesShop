@@ -18,7 +18,6 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('shop.urls')),
@@ -27,6 +26,7 @@ urlpatterns = [
     path(r'^cart/', include(('cart.urls', 'cart'), namespace='cart')),
     path('api/v1/', include('shop.api.urls')),
     path('api/v1/', include('user.api.urls')),
+    path('api/v1/', include('cart.api.urls')),
 ]
 
 if settings.DEBUG:
